@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Доступ воспрещен
+{% endblock %}
+
+{% block content %}
+   <div class="features">
+       <div style="text-align: center;">
+           <br><br><br><br><h1>Извините, но вы не можете оставлять или редактировать записи, так как не являетесь редактором сайта. Если вы являетесь таковым, то, пожалуйста, свяжитесь с администрацией сайта.</h1>
+           <a href="{% url 'all' %}" class="btn btn-success">На главную</a>
+       </div>
+   </div>
+{% endblock %}
