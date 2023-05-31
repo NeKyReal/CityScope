@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удаление события{% endblock %}
+
+{% block content %}
+   <div class="features">
+       <h1>Удалить событие</h1>
+       <div style="text-align: center;">
+           <br><br><br><h3 style="font-weight: bolder;">Удалить это событие? Возможно, кто-то хотел его посетить...</h3>
+       <form method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <button class="btn btn-success" type="submit">Удалить</button>
+       </form>
+       </div>
+   </div>
+{% endblock %}

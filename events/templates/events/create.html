@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Форма по добавлению события{% endblock %}
+
+{% block content %}
+<div class="centring">
+   <div class="features">
+       {% if request.user.is_authenticated %}
+       <h1>Добавить событие</h1>
+       <form method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <br>{{ form.title }}<br>
+           {{ form.announcement }}<br>
+           {{ form.description }}<br>
+           {{ form.date }}<br>
+           {{ form.place }}<br>
+           {{ form.image }}<br>
+           <span>{{ error }}</span>
+           <br><button class="btn btn-success" type="submit">Добавить</button>
+       </form>
+       {% endif %}
+   </div>
+</div>
+{% endblock %}

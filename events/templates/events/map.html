@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Карта событий{% endblock %}
+
+{% block content %}
+<div id="map" style="width: 10%; height: 800px"></div>
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init()
+    {
+        var myMap = new ymaps.Map("map",
+            {
+                center: [56.010569, 92.852572],
+                zoom: 10,
+            });
+        var address = 'Красноярск, ' + '{{ event.place }}';
+        var geocoder = ymaps.geocode(address);
+        geocoder.then(
+            function (res)
+            {
+                var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+                myMap.setCenter(coordinates, 18);
+                var placemark = new ymaps.Placemark(coordinates,
+                    {
+                        'hintContent': address,
+                        'balloonContent': '<strong>Здесь</strong>'
+                    },
+                    {
+                        'preset': 'islands#icon',
+                        'iconColor': '#ff9065'
+                    });
+                myMap.geoObjects.add(placemark);
+            });
+            }
+       </script><br>
+{% endblock %}

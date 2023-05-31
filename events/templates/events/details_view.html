@@ -1,0 +1,82 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+{{ event.title }}
+{% endblock %}
+
+{% block content %}
+   <div class="details_v">
+      <div class="heady">
+          <div class="alert alert-secondary" style="margin-left: 10%; width: 80%;">
+              <h1 style="font-weight: bolder;">{{ event.title }}</h1>
+              <p>Дата проведения: {{ event.date }}</p>
+              <p data-attr1="{{ event.place }}">Место проведения: {{ event.place }}</p>
+          </div>
+      </div>
+
+      <div class="bodyy">
+      <h5>{{ event.announcement }}</h5><br>
+      <div style="text-align: center;">
+      <img src="{{ event.image.url }}" width=100%>
+      </div>
+       <br><p>{{ event.description }}</p><br>
+
+          {% if request.user.is_authenticated %}
+          <h5>Местоположение на карте</h5>
+          <div id="map" style="width: 100%; height: 800px"></div>
+          <script type="text/javascript">
+            ymaps.ready(init);
+            function init()
+            {
+                var myMap = new ymaps.Map("map",
+                    {
+                    center: [56.010569, 92.852572],
+                    zoom: 10,
+                    });
+                var address = 'Красноярск, ' + '{{ event.place }}';
+                var geocoder = ymaps.geocode(address);
+                geocoder.then(
+                    function (res)
+                    {
+                        var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+                        myMap.setCenter(coordinates, 18);
+                        var placemark = new ymaps.Placemark(
+                            coordinates,
+                            {
+                                'hintContent': address,
+                                'balloonContent': '<strong>Здесь</strong>'
+                            },
+                            {
+                                'preset': 'islands#redDotIcon'
+                            });
+                        myMap.geoObjects.add(placemark);
+                    });
+            }
+       </script><br>
+
+       <div style="text-align: center;">
+       <a href="{% url 'events-update' event.id %}" class="btn btn-secondary">Редактировать</a>
+       <a href="{% url 'events-delete' event.id %}" class="btn btn-dark">Удалить</a>
+       </div><br>
+       </div>
+       <h2>Оставить комментарий</h2>
+       <form style="width: 90%;" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           {{ form.comment }}
+           <br><button class="btn btn-secondary" type="submit">Добавить</button>
+       </form>
+       {% endif %}
+       {% if event.review.all %}
+           <br><h2>Все комментарии</h2>
+       {% for comment in event.review.all %}
+           <div class="alert alert-warning">
+               <h2>[автор комментария]: {{ comment.name }}</h2>
+               <p>{{ comment.date }}</p>
+               <p>{{ comment.comment }}</p>
+           </div>
+       {% endfor %}
+       {% else %}
+           <br><h2>Нет комментариев</h2><br>
+       {% endif %}
+   </div>
+{% endblock %}

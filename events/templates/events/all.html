@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Основные события{% endblock %}
+
+{% block content %}
+<div class="centring">
+{% if events %}
+  {% for element in events %}
+  <div class="container1">
+    <img src="{{ element.image.url }}" alt="pic" style="width:100%;">
+    <div class="content">
+      <h1>{{ element.title }}</h1>
+      <p>{{ element.date }}</p>
+      <p>{{ element.announcement }}</p>
+      <a href="{% url 'events-detail' element.id %}" class="btn btn-secondary">Подробнее</a>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'featured' element.id %}" class="btn btn-dark">В избранное</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <p>Нет записей</p>
+{% endif %}
+</div>
+
+<!--   <div class="features">-->
+<!--       <h1>Главная страница</h1>-->
+<!--       {% if events %}-->
+<!--           {% for element in events %}-->
+<!--           <div class="ev">-->
+<!--               <div class="alert alert-dark" >-->
+<!--                   <img src="{{ element.image.url }}" width=100%>-->
+<!--                   <br><br><h3>{{ element.title }}</h3>-->
+<!--                   <p>{{ element.date }}</p>-->
+<!--                   <p>{{ element.announcement }}</p>-->
+<!--                   <a href="{% url 'events-detail' element.id %}" class="btn btn-success">Читать далее</a>-->
+<!--               </div>-->
+<!--            </div>-->
+<!--           {% endfor %}-->
+<!--       {% else %}-->
+<!--           <p>Нет записей</p>-->
+<!--       {% endif %}-->
+
+<!--       {# Комментарий #}-->
+<!--   </div>-->
+{% endblock %}
