@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+    <div class="alert alert-danger">
+        <p>Список желаемого {{ user.username }}</p>
+        <hr>
+<div class="prof">
+    {% for wish in wishlist %}
+    <ul>
+        <li>Вы хотели посетить <a href="http://127.0.0.1:8000/events/{{ wish }}" class="btn btn-light">Событие [{{ wish }}]</a></li>
+    </ul>
+    {% endfor %}
+</div>
+    </div>
+    {% endif %}
+{% endblock %}

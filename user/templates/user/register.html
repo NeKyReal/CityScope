@@ -1,0 +1,52 @@
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+<div class="alert-light">
+       <br><br><br><h1>Создать аккаунт</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy  }}
+      <button name="signupSubmit" class="btn btn-secondary" type="submit">Зарегистрироваться</button>
+    </form>
+    </div>
+
+{% block javascript %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+      $(document).ready(function ()
+      {
+          $('#id_username').keyup(function ()
+          {
+              $.ajax(
+                  {
+                  data: $(this).serialize(),
+                  url: "{% url 'validate_username' %}",
+                  success: function (response)
+                  {
+                      if (response.is_taken == true)
+                      {
+                          $('#id_username').removeClass('is-valid').addClass('is-invalid');
+                          $('#id_username').after('<div class="invalid-feedback d-block" id="usernameError">Это имя пользователя уже занято!</div>')
+                      }
+                      else
+                      {
+                          $('#id_username').removeClass('is-invalid').addClass('is-valid');
+                          $('#usernameError').remove();
+                      }
+                  },
+                  error: function (response)
+                  {
+                      console.log(response.responseJSON.errors)
+                  }
+              });
+              return false;
+          });
+      })
+  </script>
+{% endblock javascript %}
+{% endblock %}

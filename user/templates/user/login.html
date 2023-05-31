@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block content %}
+   <div class="alert-light">
+       <br><br><br><h1>Войти в аккаунт</h1>
+    <form method="post">
+      {% csrf_token %}
+      <br>{{ form.username }}<br>
+      {{ form.password }}<br>
+      <div class="form-error">{{ errors }}</div>
+      <button class="btn btn-secondary" type="submit">Войти</button>
+    </form>
+    </div>
+{% endblock %}
