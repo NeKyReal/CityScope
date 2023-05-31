@@ -1,0 +1,184 @@
+body {
+  font-family: 'Comfortaa', cursive;
+}
+
+.topnav {
+    z-index: 9990;
+    background-color: rgba(51,51,51, 0.99);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 10px;
+    transition: transform .1s ease;
+}
+
+.topnav a:hover {
+    background-color: #956bb8;
+    color: black;
+
+    transform: scale(1.20);
+}
+
+.topnav a.active {
+    background-color: #7c4ea2;
+    color: white;
+}
+
+.topnav form {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-right: 10px;
+}
+
+.Logo {float: left;
+      color: white;
+      margin-left: 20px;
+      font-weight: bold;
+      }
+
+.container {
+           width: 100%;
+           max-width: 1200px;
+           margin: 0 auto;
+           }
+
+.alert-dark {
+    float: left;
+    clear: both;
+    width: 52%;
+    margin: 1%;
+    text-align: center;
+}
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 90%;
+    margin: 1%;
+    text-align: left;
+}
+
+/*events*/
+
+.features {
+  text-align: center;
+}
+ .ev{
+   margin-left: 31%;
+ }
+
+.create h2 {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.create button {
+  margin-top: 3%;
+  margin-left: 46%;
+  background-color: #0eed67;
+  border-radius: 20px;
+  transition: transform .5s ease;
+}
+
+.create button:hover {
+  background-color: #0dba52;
+  transform: scale(1.20);
+}
+
+ .create table {
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+.heady{
+  text-align: center;
+}
+
+.bodyy{
+  margin-top: 5%;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.main {
+    margin-top: 4%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+/*user*/
+
+.alert-light {
+    text-align: center;
+    margin-left: 36%;
+    margin-right: -46%;
+    display: inline-block;
+    border-top: 4px solid #4f4949;
+}
+
+.prof{
+  text-align: left;
+  font-size: 20px;
+}
+
+.alert-danger{
+    text-align: center;
+    font-size: 40px;
+    color: #f1f1f1;
+    background: #c8b3ff;
+    margin-left: 1%;
+    margin-right: 50%;
+}
+
+.btn-light{
+    color: #ff9065;
+}
+
+{
+  box-sizing: border-box;
+}
+
+.container1 {
+  float: left;
+  position: relative;
+  max-width: 800px;
+  margin-top: 2%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.container1 img {
+    width: 800px;
+    height: 600px;
+    vertical-align: middle;
+}
+
+.container1 .content {
+  float: left;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+.centring {
+  margin-left: 4%;
+  margin-right: 4%;
+}

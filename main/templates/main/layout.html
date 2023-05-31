@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '\css\main.css' %}">
+    <link rel="stylesheet" href="{% static '\css\scrollup-button.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=511c9b56-908c-47fe-bbfe-7d53c7de0903&lang=ru_RU" type="text/javascript">
+    </script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+  <div class="topnav">
+    <h1 class="Logo">CityScope</h1>
+    <ul>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}">Выйти</a>
+      <a href="{% url 'profile' %}" style="color:#f2f2f2">Вы: {{ user.username }}</a>
+      <a href="{% url 'create' %}">Создать событие</a>
+        {% else %}
+      <a href="{% url 'register' %}">Регистрация</a>
+      <a href="{% url 'login' %}">Войти</a>
+        {% endif %}
+      <a href="{% url 'all' %}">События</a>
+      <a class="active" href="{% url 'home' %}">Главная</a>
+        <form action="{% url 'search' %}" method="get">
+            <input name="q" type="text" placeholder="Например, музей">
+        </form>
+  </ul>
+</div>
+  <div class="main">
+{% if not request.user.is_authenticated %}
+<div class="row p-1">
+    <div class="alert alert-success" style="background: red; color: white; margin-left: 17.5%; width: 65%">Внимание! Вы не авторизованы, поэтому некоторые функции могут работать некорректно!</div>
+    <div class="col-md-12 p-3" style="display: flex; justify-content: center;">
+        <div class="white1 box" style="width: 10px; height: 10px; background: #000000; margin-right: 20px;"></div>
+        <div class="white2 box" style="width: 10px; height: 10px; background: #000000; margin-right: 20px;"></div>
+        <div class="white3 box" style="width: 10px; height: 10px; background: #000000; margin-right: 20px;"></div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/deferred.js' %}"></script>
+{% endif %}
+
+{% block content %}
+
+      {% block javascript %}
+      {% endblock javascript %}
+
+{% endblock %}
+  </div>
+<div id="scrollTop" title="Наверх"><span>Наверх</span></div>
+<script type="text/javascript" src="{% static 'js/scrollup-button.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Создать событие
+{% endblock %}
+
+{% block content %}
+<div class="create">
+  {% if request.user.is_authenticated %}
+  <h2>{{ message }}</h2>
+  <form method="post" action="/hello_app/create/">
+    {% csrf_token %}
+    <table frame="border">
+      {{ form }}
+    </table>
+    <button type="submit">Создать</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}
