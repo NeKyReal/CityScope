@@ -1,0 +1,30 @@
+[
+    {
+        "user": 2,
+        "wish": 6
+    },
+    {
+        "user": 2,
+        "wish": 7
+    },
+    {
+        "user": 2,
+        "wish": 3
+    },
+    {
+        "user": 2,
+        "wish": 1
+    },
+    {
+        "user": 4,
+        "wish": 6
+    },
+    {
+        "user": 4,
+        "wish": 7
+    },
+    {
+        "user": 1,
+        "wish": 6
+    }
+]
